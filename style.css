@@ -11,6 +11,10 @@ h1 {
   color: #e2e2e2;
 }
 
+.img {
+  max-width: 150px;
+}
+
 #spellemannTabell {
   width: 100%;
   border-collapse: collapse;
@@ -145,35 +149,27 @@ h1 {
   color: #bf9b8e;
 }
 
-/* Styling for "Vis antall rader"-dropdown */
-.dataTables_wrapper .dataTables_length {
-  background-color: #1a1a1a; /* Bakgrunnsfarge */
-  color: #bf9b8e; /* Tekstfarge */
-  padding: 10px; /* Innvendig marg */
-  border-radius: 5px; /* Runde hjørner */
+/* Endrer fontfarge på "Vis antall rader" */
+.dataTables_wrapper .dataTables_length label {
+  color: #bf9b8e; /* Endre til ønsket fontfarge */
 }
 
-.dataTables_wrapper .dataTables_length select {
-  background-color: #262626; /* Bakgrunnsfarge i dropdown */
-  color: #d9d9d9; /* Tekstfarge */
-  border: 1px solid #737373; /* Kantfarge */
-  padding: 5px;
-  border-radius: 4px;
+/* Endrer fontfarge på "Søk på ord i hele listen" */
+.dataTables_wrapper .dataTables_filter label {
+  color: #bf9b8e; /* Endre til ønsket fontfarge */
 }
 
-/* Styling for "Søk etter ord"-feltet */
-.dataTables_wrapper .dataTables_filter {
-  background-color: #1a1a1a; /* Bakgrunnsfarge */
-  color: #bf9b8e; /* Tekstfarge */
-  padding: 10px;
-  border-radius: 5px;
-  margin-left: 10px; /* Avstand fra andre elementer */
+/* Endrer fontfarge på pagineringsinformasjon ("Viser _START_ til _END_") */
+.dataTables_wrapper .dataTables_info {
+  color: #bf9b8e; /* Endre til ønsket fontfarge */
 }
 
-.dataTables_wrapper .dataTables_filter input {
-  background-color: #262626; /* Bakgrunnsfarge for selve søkefeltet */
-  color: #d9d9d9; /* Tekstfarge */
-  border: 1px solid #737373;
-  padding: 6px;
-  border-radius: 4px;
+/* Endrer fontfarge på pagineringsknappene */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #d9d9d9; /* Endre til ønsket fontfarge for aktive knapper */
+}
+
+/* Endrer fontfarge på inaktive pagineringsknapper */
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: #737373; /* Endre til ønsket fontfarge for inaktive knapper */
 }

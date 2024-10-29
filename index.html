@@ -20,7 +20,10 @@
     </style> -->
   </head>
   <body>
-    <h1>Spellemannpriser - Full oversikt over nominerte og vinnere</h1>
+    <div>
+      <img src="./assets/spellemannsprisen.png" class="img" />
+      <h1>Full oversikt over nominerte og vinnere</h1>
+    </div>
     <table id="spellemannTabell" class="display" style="width: 100%">
       <thead>
         <tr>
@@ -76,8 +79,17 @@
           searching: true,
           language: {
             lengthMenu: "Vis antall rader: _MENU_", // Tilpass "Vis linjer"-teksten
-            search: "Søk etter ord:", // Tilpass "Søk"-teksten
-            url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Norwegian-Bokmal.json",
+            search: "Søk på ord i hele listen :", // Tilpass "Søk"-teksten
+            info: "Viser _START_ til _END_ av _TOTAL_ oppføringer", // Info om antall rader vist
+            paginate: {
+              first: "Første",
+              last: "Siste",
+              next: "Neste",
+              previous: "Forrige",
+            },
+            infoEmpty: "Ingen oppføringer tilgjengelig", // Når ingen data vises
+            infoFiltered: "(filtrert fra totalt _MAX_ oppføringer)", // Når filter er på
+            zeroRecords: "Ingen treff funnet", // Når søk gir null treff
           },
         });
 
