@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Spellemannpriser - Dynamisk Liste</title>
+    <!-- DataTables CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Spellemannpriser - Dynamisk og Sorterbar Liste</h1>
+    <table id="spellemannTabell" class="display" style="width: 100%">
+      <thead>
+        <tr>
+          <th>År</th>
+          <th>Artist</th>
+          <th>Tittel</th>
+          <th>Kategori</th>
+          <th>Vunnet</th>
+        </tr>
+      </thead>
+    </table>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+      $.getJSON("spellemann_data.json", function (data) {
+        console.log("Data lastet:", data);
+      });
+
+      $(document).ready(function () {
+        $("#spellemannTabell").DataTable({
+          ajax: "./assets/spellemann_data.json", // Hent JSON-data
+          columns: [
+            { data: "Year" },
+            { data: "Artist" },
+            { data: "Title" },
+            { data: "Category" },
+            { data: "Award" },
+          ],
+          pageLength: 25, // Antall rader per side
+          lengthMenu: [10, 25, 50, 100], // Alternativer for antall rader per side
+          ordering: true, // Sortering aktivert
+          searching: true, // Søkefunksjon aktivert
+          language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Norwegian-Bokmal.json",
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
