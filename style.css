@@ -173,14 +173,10 @@ h2 {
   color: #a78d42;
 }
 
-/* Endrer fontfarge på "Velg antall rader" */
-.dataTables_wrapper .dataTables_length label {
-  color: #a78d42; /* Endre til ønsket fontfarge */
-}
-
-/* Endrer fontfarge på "Søk på ord i hele listen" */
+/* Stil for "Velg antall rader" og "Søk" tekst */
+.dataTables_wrapper .dataTables_length label,
 .dataTables_wrapper .dataTables_filter label {
-  color: #a78d42; /* Endre til ønsket fontfarge */
+  color: #a78d42;
 }
 
 /* Endrer fontfarge på pagineringsinformasjon ("Viser _START_ til _END_") */
