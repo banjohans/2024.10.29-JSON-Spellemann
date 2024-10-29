@@ -146,16 +146,16 @@ h2 {
 /* Paginering og søkefelt styling */
 .dataTables_wrapper .dataTables_filter input {
   background-color: #1a1a1a;
-  color: #d9d9d9;
-  border: 1px solid #bf9b8e;
+  color: #a78d42;
+  border: 1px solid #a78d42;
   padding: 6px;
   margin-left: 10px;
 }
 
 /* Paginering - stil for aktive og inaktive knapper */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  background-color: #282828;
-  color: #fbfbfb;
+  background-color: #0d0d0d; /* Mørk bakgrunn */
+  color: #a78d42; /* Gullfarget tekst */
   border: 1px solid #737373;
   padding: 5px 10px;
   margin: 2px;
@@ -163,9 +163,9 @@ h2 {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background-color: #737373;
-  color: #262626;
-  border: 1px solid #bf9b8e;
+  background-color: #737373; /* Lystoner bakgrunn for hover */
+  color: #0d0d0d; /* Mørk tekst */
+  border: 1px solid #a78d42; /* Gull kant */
 }
 
 /* Tekstfarge for dataTables info */
