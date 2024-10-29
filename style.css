@@ -1,0 +1,179 @@
+/* Generell styling for tabellen */
+body {
+  font-family: "Oscar Pro", sans-serif;
+  background-color: #0d0d0d;
+  color: #d9d9d9;
+  text-align: center;
+  margin: 20px;
+}
+
+h1 {
+  color: #e2e2e2;
+}
+
+#spellemannTabell {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #262626;
+  color: gold;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* Header styling */
+#spellemannTabell thead th {
+  background-color: #0d0d0d;
+  color: #d9d9d9;
+  font-weight: bold;
+  padding: 12px;
+  border-bottom: 2px solid #737373;
+  text-transform: uppercase;
+}
+
+/* Søkefelt styling */
+#spellemannTabell thead tr:nth-child(2) th input {
+  background-color: #1a1a1a;
+  color: #d9d9d9;
+  border: 1px solid #bf9b8e;
+  padding: 8px;
+  width: 90%;
+  font-size: 14px;
+}
+
+#spellemannTabell thead tr:nth-child(2) th input::placeholder {
+  color: #bf9b8e;
+}
+
+/* Rader styling */
+#spellemannTabell tbody tr:nth-child(odd) {
+  background-color: #262626;
+}
+
+#spellemannTabell tbody tr:nth-child(even) {
+  background-color: #0d0d0d;
+}
+
+#spellemannTabell tbody tr:hover {
+  background-color: #737373;
+  color: #262626;
+}
+
+/* Cell styling */
+#spellemannTabell tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #bf9b8e;
+}
+
+/* Kolonne og rad valg bakgrunnsfarge */
+#spellemannTabell tbody tr.selected,
+#spellemannTabell tbody tr.selected td {
+  background-color: #515151 !important; /* Tonet farge for valg */
+  color: #d9d9d9 !important;
+}
+
+/* Høydepunktsfarge for hele kolonnen ved søk */
+#spellemannTabell tbody td.highlighted,
+#spellemannTabell tbody tr.selected td.highlighted {
+  background-color: #737373 !important; /* Ton ned fargen */
+  color: #d9d9d9 !important;
+}
+
+/* Fjern hover-effekter på celler hvis det er tilfelle */
+#spellemannTabell tbody td:focus,
+#spellemannTabell tbody td:active {
+  outline: none;
+  background-color: inherit;
+}
+
+/* Fjern kolonnehøydepunkt ved filtrering */
+.dataTables_wrapper .dataTables_scrollHeadInner,
+.dataTables_wrapper .dataTables_scrollBody .highlighted {
+  background-color: #262626 !important; /* Nøytraliser lysfargen */
+  color: #d9d9d9 !important;
+}
+
+/* Deaktiver kolonne høydepunkt ved utvidet filtrering */
+#spellemannTabell thead th,
+#spellemannTabell tbody td {
+  background-color: #262626 !important;
+  color: #d9d9d9 !important;
+}
+
+/* Slå av DataTables kolonnehøydepunktfarge */
+#spellemannTabell tbody .highlighted,
+#spellemannTabell thead th.highlighted {
+  background-color: transparent !important;
+  color: #d9d9d9 !important;
+}
+
+/* Footer styling */
+#spellemannTabell tfoot th {
+  background-color: #262626;
+  color: #d9d9d9;
+  font-weight: bold;
+  padding: 10px;
+  border-top: 2px solid #737373;
+}
+
+/* Paginering og søkefelt styling */
+.dataTables_wrapper .dataTables_filter input {
+  background-color: #1a1a1a;
+  color: #d9d9d9;
+  border: 1px solid #bf9b8e;
+  padding: 6px;
+  margin-left: 10px;
+}
+
+/* Paginering - stil for aktive og inaktive knapper */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background-color: #282828;
+  color: #fbfbfb;
+  border: 1px solid #737373;
+  padding: 5px 10px;
+  margin: 2px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background-color: #737373;
+  color: #262626;
+  border: 1px solid #bf9b8e;
+}
+
+/* Tekstfarge for dataTables info */
+.dataTables_wrapper .dataTables_info {
+  color: #bf9b8e;
+}
+
+/* Styling for "Vis antall rader"-dropdown */
+.dataTables_wrapper .dataTables_length {
+  background-color: #1a1a1a; /* Bakgrunnsfarge */
+  color: #bf9b8e; /* Tekstfarge */
+  padding: 10px; /* Innvendig marg */
+  border-radius: 5px; /* Runde hjørner */
+}
+
+.dataTables_wrapper .dataTables_length select {
+  background-color: #262626; /* Bakgrunnsfarge i dropdown */
+  color: #d9d9d9; /* Tekstfarge */
+  border: 1px solid #737373; /* Kantfarge */
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* Styling for "Søk etter ord"-feltet */
+.dataTables_wrapper .dataTables_filter {
+  background-color: #1a1a1a; /* Bakgrunnsfarge */
+  color: #bf9b8e; /* Tekstfarge */
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 10px; /* Avstand fra andre elementer */
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  background-color: #262626; /* Bakgrunnsfarge for selve søkefeltet */
+  color: #d9d9d9; /* Tekstfarge */
+  border: 1px solid #737373;
+  padding: 6px;
+  border-radius: 4px;
+}

@@ -2,13 +2,14 @@
 <html lang="no">
   <head>
     <meta charset="UTF-8" />
-    <title>Spellemannpriser - Dynamisk Liste</title>
+    <title>Spellemannpriser - Full oversikt</title>
+    <link rel="stylesheet" href="style.css" />
     <!-- DataTables CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"
     />
-    <style>
+    <!-- <style>
       body {
         font-family: Arial, sans-serif;
       }
@@ -16,10 +17,10 @@
         text-align: center;
         color: #333;
       }
-    </style>
+    </style> -->
   </head>
   <body>
-    <h1>Spellemannpriser - Dynamisk og Sorterbar Liste</h1>
+    <h1>Spellemannpriser - Full oversikt over nominerte og vinnere</h1>
     <table id="spellemannTabell" class="display" style="width: 100%">
       <thead>
         <tr>
@@ -29,6 +30,24 @@
           <th>Kategori</th>
           <th>Vunnet</th>
         </tr>
+        <!-- Individuelle søkefelt for hver kolonne -->
+        <tr>
+          <th>
+            <input type="text" placeholder="Søk År" style="width: 100%" />
+          </th>
+          <th>
+            <input type="text" placeholder="Søk Artist" style="width: 100%" />
+          </th>
+          <th>
+            <input type="text" placeholder="Søk Tittel" style="width: 100%" />
+          </th>
+          <th>
+            <input type="text" placeholder="Søk Kategori" style="width: 100%" />
+          </th>
+          <th>
+            <input type="text" placeholder="Søk Vunnet" style="width: 100%" />
+          </th>
+        </tr>
       </thead>
     </table>
 
@@ -37,13 +56,13 @@
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
-      $.getJSON("spellemann_data.json", function (data) {
-        console.log("Data lastet:", data);
-      });
-
       $(document).ready(function () {
-        $("#spellemannTabell").DataTable({
-          ajax: "./assets/spellemann_data.json", // Hent JSON-data
+        // Initialiser DataTable med JSON-data
+        var table = $("#spellemannTabell").DataTable({
+          ajax: {
+            url: "./assets/spellemann_data.json",
+            dataSrc: "data",
+          },
           columns: [
             { data: "Year" },
             { data: "Artist" },
@@ -51,13 +70,24 @@
             { data: "Category" },
             { data: "Award" },
           ],
-          pageLength: 25, // Antall rader per side
-          lengthMenu: [10, 25, 50, 100], // Alternativer for antall rader per side
-          ordering: true, // Sortering aktivert
-          searching: true, // Søkefunksjon aktivert
+          pageLength: 25,
+          lengthMenu: [10, 25, 50, 100],
+          ordering: true,
+          searching: true,
           language: {
+            lengthMenu: "Vis antall rader: _MENU_", // Tilpass "Vis linjer"-teksten
+            search: "Søk etter ord:", // Tilpass "Søk"-teksten
             url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Norwegian-Bokmal.json",
           },
+        });
+
+        // Legg til filtrering for hver kolonne
+        $("#spellemannTabell thead tr:eq(1) th").each(function (i) {
+          $("input", this).on("keyup change", function () {
+            if (table.column(i).search() !== this.value) {
+              table.column(i).search(this.value).draw();
+            }
+          });
         });
       });
     </script>
