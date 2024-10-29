@@ -18,11 +18,19 @@
         color: #333;
       }
     </style> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Big+Shoulders+Display:wght@100..900&family=Bitter:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div>
+    <div class=".header">
       <img src="./assets/spellemannsprisen.png" class="img" />
-      <h1>Full oversikt over nominerte og vinnere</h1>
+      <h1>dynamisk filtrering av nominerte og vinnere</h1>
+      <h2>kodet av Hans Martin Rundberg Austestad 2024</h2>
     </div>
     <table id="spellemannTabell" class="display" style="width: 100%">
       <thead>
@@ -35,9 +43,19 @@
         </tr>
         <!-- Individuelle søkefelt for hver kolonne -->
         <tr>
-          <th>
+          <!-- <th>
             <input type="text" placeholder="Søk År" style="width: 100%" />
+          </th> -->
+          <!-- Søkeinput for "År" med id="yearSearch" -->
+          <th>
+            <input
+              type="text"
+              id="yearSearch"
+              placeholder="År (f.eks. 1972-1979)"
+              style="width: fit-content"
+            />
           </th>
+
           <th>
             <input type="text" placeholder="Søk Artist" style="width: 100%" />
           </th>
@@ -48,7 +66,11 @@
             <input type="text" placeholder="Søk Kategori" style="width: 100%" />
           </th>
           <th>
-            <input type="text" placeholder="Søk Vunnet" style="width: 100%" />
+            <input
+              type="text"
+              placeholder="Søk Vunnet"
+              style="width: fit-content"
+            />
           </th>
         </tr>
       </thead>
@@ -60,6 +82,33 @@
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script>
       $(document).ready(function () {
+        // Tilpasset søkefunksjon for "År"-kolonnen
+        $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+          var searchValue = $("#yearSearch").val().trim(); // Input-verdien fra "År" søkefeltet
+          var year = parseInt(data[0], 10); // År-kolonnen i tabellen (første kolonne)
+
+          if (searchValue === "") return true; // Hvis det ikke er noen søkeverdi, vis alle rader
+
+          if (searchValue.includes("+")) {
+            // Hvis søkeverdien inneholder "+", søk etter spesifikke år
+            var years = searchValue.split("+").map(function (y) {
+              return parseInt(y.trim(), 10);
+            });
+            return years.includes(year);
+          } else if (searchValue.includes("-")) {
+            // Hvis søkeverdien inneholder "-", søk etter et årsspenn
+            var range = searchValue.split("-").map(function (y) {
+              return parseInt(y.trim(), 10);
+            });
+            var startYear = range[0];
+            var endYear = range[1];
+            return year >= startYear && year <= endYear;
+          } else {
+            // Hvis søkeverdien er et enkelt år
+            return year === parseInt(searchValue, 10);
+          }
+        });
+
         // Initialiser DataTable med JSON-data
         var table = $("#spellemannTabell").DataTable({
           ajax: {
@@ -78,26 +127,34 @@
           ordering: true,
           searching: true,
           language: {
-            lengthMenu: "Vis antall rader: _MENU_", // Tilpass "Vis linjer"-teksten
-            search: "Søk på ord i hele listen :", // Tilpass "Søk"-teksten
-            info: "Viser _START_ til _END_ av _TOTAL_ oppføringer", // Info om antall rader vist
+            lengthMenu: "Velg antall rader: _MENU_",
+            search: "Søk på ord i hele listen:",
+            info: "Viser _START_ til _END_ av _TOTAL_ oppføringer",
             paginate: {
               first: "Første",
               last: "Siste",
               next: "Neste",
               previous: "Forrige",
             },
-            infoEmpty: "Ingen oppføringer tilgjengelig", // Når ingen data vises
-            infoFiltered: "(filtrert fra totalt _MAX_ oppføringer)", // Når filter er på
-            zeroRecords: "Ingen treff funnet", // Når søk gir null treff
+            infoEmpty: "Ingen oppføringer tilgjengelig",
+            infoFiltered: "(filtrert fra totalt _MAX_ oppføringer)",
+            zeroRecords: "Ingen treff funnet",
           },
         });
 
-        // Legg til filtrering for hver kolonne
+        // Legg til eventlistener for "År"-søkeinput
+        $("#yearSearch").on("keyup change", function () {
+          table.draw(); // Oppdater tabellen ved endring i "År"-søkefeltet
+        });
+
+        // Legg til filtrering for de andre kolonnene
         $("#spellemannTabell thead tr:eq(1) th").each(function (i) {
           $("input", this).on("keyup change", function () {
-            if (table.column(i).search() !== this.value) {
-              table.column(i).search(this.value).draw();
+            if (i !== 0) {
+              // Unngå at vi overskriver yearSearch
+              if (table.column(i).search() !== this.value) {
+                table.column(i).search(this.value).draw();
+              }
             }
           });
         });

@@ -1,14 +1,38 @@
 /* Generell styling for tabellen */
 body {
   font-family: "Oscar Pro", sans-serif;
-  background-color: #0d0d0d;
+  background-color: #f4f4f4;
   color: #d9d9d9;
   text-align: center;
   margin: 20px;
 }
 
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900 */
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.bitter {
+  font-family: "Bitter", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
 h1 {
-  color: #e2e2e2;
+  color: #a78d42;
+  font-family: "Bitter";
+  font-size: 1.5rem;
+}
+
+h2 {
+  color: #a78d42;
+  font-family: "Bitter";
+  font-size: 0.5rem;
 }
 
 .img {
@@ -146,30 +170,30 @@ h1 {
 
 /* Tekstfarge for dataTables info */
 .dataTables_wrapper .dataTables_info {
-  color: #bf9b8e;
+  color: #a78d42;
 }
 
-/* Endrer fontfarge på "Vis antall rader" */
+/* Endrer fontfarge på "Velg antall rader" */
 .dataTables_wrapper .dataTables_length label {
-  color: #bf9b8e; /* Endre til ønsket fontfarge */
+  color: #a78d42; /* Endre til ønsket fontfarge */
 }
 
 /* Endrer fontfarge på "Søk på ord i hele listen" */
 .dataTables_wrapper .dataTables_filter label {
-  color: #bf9b8e; /* Endre til ønsket fontfarge */
+  color: #a78d42; /* Endre til ønsket fontfarge */
 }
 
 /* Endrer fontfarge på pagineringsinformasjon ("Viser _START_ til _END_") */
 .dataTables_wrapper .dataTables_info {
-  color: #bf9b8e; /* Endre til ønsket fontfarge */
+  color: #a78d42; /* Endre til ønsket fontfarge */
 }
 
 /* Endrer fontfarge på pagineringsknappene */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-  color: #d9d9d9; /* Endre til ønsket fontfarge for aktive knapper */
+  color: #a78d42; /* Endre til ønsket fontfarge for aktive knapper */
 }
 
 /* Endrer fontfarge på inaktive pagineringsknapper */
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
-  color: #737373; /* Endre til ønsket fontfarge for inaktive knapper */
+  color: #a78d42; /* Endre til ønsket fontfarge for inaktive knapper */
 }
